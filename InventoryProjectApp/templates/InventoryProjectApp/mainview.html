@@ -1,0 +1,56 @@
+{% extends 'InventoryProjectApp/baseview.html' %}
+{% block content %}
+
+
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="#">Hello {{ request.user }}!  </a>
+        </div>
+        <h2><a href="{% url 'Logout-Page' %}">Logout</a></h2>
+
+      </div>
+
+        <div class="btn-group">
+          <a href="{% url 'ProductForm-Page' %}" class="btn btn-info btn-lg" role="button" >Add New Item</a>
+        </div>
+		<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Items in the inventory</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Item</th>
+							<th>Model</th>
+							<th>Purchase Date</th>
+                            <th>Owner</th>
+                            <th>Satus</th>
+                            <th>Used In</th>
+                            <th>Action</th>
+						</tr>
+
+						{% for i in products %}
+							<tr>
+								<td>{{i.id}}</td>
+								<td>{{i.model}}</td>
+								<td>{{i.purchase_date}}</td>
+                                <td>{{i.owner}}</td>
+                                <td>{{i.status}}</td>
+                                <td>{{i.used_in}}</td>
+                                <td><a class="btn btn-sm btn-info" href="{% url 'update_form' i.id  %}">Update</a></td>
+							</tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+
+{% endblock content %}
+
+
